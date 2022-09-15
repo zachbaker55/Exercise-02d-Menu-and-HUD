@@ -184,6 +184,8 @@ Assets are provided by [Kenney.nl](https://kenney.nl/assets/space-shooter-extens
 
 The explosion spritesheet was released into the public domain by [StumpyStrust](https://opengameart.org/content/explosion-sheet)
 
+The Hyperspace typeface was developed by [Pixel Sagas](https://www.dafont.com/hyperspace.font) and is freely available for personal use.
+
 ## References
 None
 
