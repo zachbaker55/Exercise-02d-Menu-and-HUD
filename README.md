@@ -15,14 +15,14 @@ The only change is that I have added an extra file to the Assts folder, the Hype
 This is what you will need to accomplish as part of this exercise:
 
 Main Menu:
-	- Create a new "User Interface" scene. Rename the resulting Control node "Main_Menu". The main menu should have a Label ("Welcome to the Space Shooter!"), a "Play" button, and a "Quit" button.
-	- Attach a script to the Main_Menu node. Save it as `res://UI/Main_Menu.gd`
-	- Attach signals to the Play and Quit buttons. Connect them to the Main_Menu script. If the Play button is pressed, execute the following: `var _scene = get_tree().change_scene("res://Game.tscn")`. If the Quit button is pressed, `get_tree().quit()`
-	- Update the Theme-Theme Overrides->Fonts for all the UI elements. Add a new dynamic font, and set its font data to `res://Assets/HyperspaceBold.ttf`
-	- Save the scene as `res://UI/Main_Menu.tscn`. In Project Settings->Application->Run, update the Main Scene to be `res://UI/Main_Menu.tscn`
+  - Create a new "User Interface" scene. Rename the resulting Control node "Main_Menu". The main menu should have a Label ("Welcome to the Space Shooter!"), a "Play" button, and a "Quit" button.
+  - Attach a script to the Main_Menu node. Save it as `res://UI/Main_Menu.gd`
+  - Attach signals to the Play and Quit buttons. Connect them to the Main_Menu script. If the Play button is pressed, execute the following: `var _scene = get_tree().change_scene("res://Game.tscn")`. If the Quit button is pressed, `get_tree().quit()`
+  - Update the Theme-Theme Overrides->Fonts for all the UI elements. Add a new dynamic font, and set its font data to `res://Assets/HyperspaceBold.ttf`
+  - Save the scene as `res://UI/Main_Menu.tscn`. In Project Settings->Application->Run, update the Main Scene to be `res://UI/Main_Menu.tscn`
 
 Global.gd:
-	- Update Global.gd to contain the following:
+  - Update Global.gd to contain the following:
 ```
 extends Node
 
@@ -50,27 +50,27 @@ func reset():
 ```
 
 Changing window sizes:
-	- Everywhere you have included the value `1024` (most of the scripts), replace it with `Global.VP.x`. Everywhere you have included the value `600`, replace it with `Global.VP.y`
+  - Everywhere you have included the value `1024` (most of the scripts), replace it with `Global.VP.x`. Everywhere you have included the value `600`, replace it with `Global.VP.y`
 
 End-game Screen:
-	- Create a new "User Interface" scene. Rename the Control node to "End_Game". The End-game screen should have a Label (empty for now), a Play button (labeled "Play again?") and a Quit button.
-	- Update the Theme-Theme Overrides->Fonts for all the UI elements. Add a new dynamic font, and set its font data to `res://Assets/HyperspaceBold.ttf`
-	- Attach a script to End_Game (`res://UI/End_Game.gd`). The `_ready()` callback should be as follows:
+  - Create a new "User Interface" scene. Rename the Control node to "End_Game". The End-game screen should have a Label (empty for now), a Play button (labeled "Play again?") and a Quit button.
+  - Update the Theme-Theme Overrides->Fonts for all the UI elements. Add a new dynamic font, and set its font data to `res://Assets/HyperspaceBold.ttf`
+  - Attach a script to End_Game (`res://UI/End_Game.gd`). The `_ready()` callback should be as follows:
 ```
 func _ready():
 	$Label.text = "Thanks for playing! Your final score was " + str(Global.score) + "."
 ```
-	- The functionality of the Play and Quit buttons should be the same as the main menu, except the Play button should first call `Global.reset()`
-	- Save the scene as `res://UI/End_Game.tscn`
+  - The functionality of the Play and Quit buttons should be the same as the main menu, except the Play button should first call `Global.reset()`
+  - Save the scene as `res://UI/End_Game.tscn`
 
 HUD:
-	- Create a new 2D Scene. Rename the resulting Node2D as Indicator. Add a Sprite as a child to Indicator. Update the Sprite's Texture to res://Assets/Player.png. Set it's scale to (0.3,0.3). Save the scene as `res://UI/Indicator.tscn`
-	- In Game.tscn, add a new child to the Game node: a CanvasLayer node. Rename it "UI"
-	- As a child of UI, add a Control node. Rename it "HUD"
-	- Add two Label nodes as children of HUD: "Score" and "Time". Score should be positioned in the top-left corner, and Time should be right-justified in the top-right corner
-	- Add a Control node as a child of HUD. Name it Indicator_Container
-	- Add a Timer node as a child of HUD. Set it to AutoStart
-	- Attach a script to HUD: `res://UI/HUD.gd`. It should be as follows
+  - Create a new 2D Scene. Rename the resulting Node2D as Indicator. Add a Sprite as a child to Indicator. Update the Sprite's Texture to res://Assets/Player.png. Set it's scale to (0.3,0.3). Save the scene as `res://UI/Indicator.tscn`
+  - In Game.tscn, add a new child to the Game node: a CanvasLayer node. Rename it "UI"
+  - As a child of UI, add a Control node. Rename it "HUD"
+  - Add two Label nodes as children of HUD: "Score" and "Time". Score should be positioned in the top-left corner, and Time should be right-justified in the top-right corner
+  - Add a Control node as a child of HUD. Name it Indicator_Container
+  - Add a Timer node as a child of HUD. Set it to AutoStart
+  - Attach a script to HUD: `res://UI/HUD.gd`. It should be as follows
 ```
 extends Control
 
@@ -105,11 +105,11 @@ update_time()
 if Global.time <= 0:
 	var _scene = get_tree().change_scene("res://UI/End_Game.tscn")
 ```
-	- Connect a timeout() signal from the Timer node to the HUD script. It should connect with the already-defined `_on_Timer_timeout()` callback
+  - Connect a timeout() signal from the Timer node to the HUD script. It should connect with the already-defined `_on_Timer_timeout()` callback
 
 Back to Global.gd:
-	- We now need to add the `update_score()` and `update_lives()` functions to `res://Global.gd`
-	- `update_score()` will appear as follows. I will leave it to you to adapt the other function:
+  - We now need to add the `update_score()` and `update_lives()` functions to `res://Global.gd`
+  - `update_score()` will appear as follows. I will leave it to you to adapt the other function:
 ```
 func update_score(s):
 	score += s
@@ -117,14 +117,14 @@ func update_score(s):
 	if hud != null:
 		hud.update_score()
 ```
-	- If the lives ever go to zero, go to the end-game screen with this statement: `var _scene = get_tree().change_scene("res://UI/End_Game.tscn")`
+  - If the lives ever go to zero, go to the end-game screen with this statement: `var _scene = get_tree().change_scene("res://UI/End_Game.tscn")`
 
 Connecting everything up:
-	- If the Player ever dies, call `Global.update_lives(-1)`
-	- If the large Asteroid is destroyed, call `Global.update_score(100)`
-	- If a small Asteroid is destroyed, call `Global.update_score(200)`
-	- If a the Enemy is destroyed, call `Global.update_score(500)`
-	- Finally, add the following callback to Global.gd. It will end the game if the asteroids and enemy are destroyed before the timer runs out:
+  - If the Player ever dies, call `Global.update_lives(-1)`
+  - If the large Asteroid is destroyed, call `Global.update_score(100)`
+  - If a small Asteroid is destroyed, call `Global.update_score(200)`
+  - If a the Enemy is destroyed, call `Global.update_score(500)`
+  - Finally, add the following callback to Global.gd. It will end the game if the asteroids and enemy are destroyed before the timer runs out:
 ```
 func _physics_process(_delta):
 	var Asteroid_Container = get_node_or_null("/root/Game/Asteroid_Container")
@@ -135,10 +135,10 @@ func _physics_process(_delta):
 ```
 
 In-game Menu:
-	- In `res://Game.tscn`, as a child of UI, add a new Control node. Rename it "Menu"
-	- As a child of Menu, add a ColorRect, A Label, a Restart button, and a Quit button
-	- The Color for the ColorRect should be RGBA: 0, 0, 0, 64. Center the ColorRect and cause it to take up most of the window
-	- Attach a script to the Menu node: `res://UI/Menu.gd`:
+  - In `res://Game.tscn`, as a child of UI, add a new Control node. Rename it "Menu"
+  - As a child of Menu, add a ColorRect, A Label, a Restart button, and a Quit button
+  - The Color for the ColorRect should be RGBA: 0, 0, 0, 64. Center the ColorRect and cause it to take up most of the window
+  - Attach a script to the Menu node: `res://UI/Menu.gd`:
 ```
 extends Control
 
@@ -155,9 +155,9 @@ func _unhandled_input(event):
 			hide()
 ```
   - Attach Signals to the Restart button and the Quit button and connect them to `res://UI/Menu.gd`
-	- The Restart button should call `Global.reset()` and then should `var _scene = get_tree().change_scene("res://Game.tscn")`
-	- If the Quit button is pressed, `get_tree().quit()`
-	- Finally, select the Menu node, and in the Inspector, set the Pause Mode to "Process"
+    - The Restart button should call `Global.reset()` and then should `var _scene = get_tree().change_scene("res://Game.tscn")`
+    - If the Quit button is pressed, `get_tree().quit()`
+  - Finally, select the Menu node, and in the Inspector, set the Pause Mode to "Process"
 
 
 Test it and make sure this is working correctly. When you start the game, you should be presented with a main menu that will invite you into the game. While playing, you should see information on-screen which should indicate your score, lives, and remaining time. If you press escape, you should see an in-game menu. If the game ends, you should be presented with an end-game screen.
